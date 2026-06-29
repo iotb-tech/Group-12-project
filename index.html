@@ -8,16 +8,59 @@
 </head>
 <body>
     <header>
-        
+        <h1>Anime Search App</h1>
+        <p>Search, explore and save your favorite anime.</p>
+        <img src="" alt="">
     </header>
 
     <main>
+        <section id="search-section">
+            <form id="search-form">
+                <label 
+                    for="search-input">
+                    Search Anime
+                </label>
+                <input 
+                    id="search-input"
+                    type="text" 
+                    placeholder="Search your favorite anime....."
+                >
+                <button 
+                    id="search-btn"
+                    type="submit"
+                    > Search Anime
+                </button>
+            </form>
+        </section>
+        <section id="status-section">
+            <h2>Status</h2>
 
+        <!--loading, errors and empty messages will be here -->
+
+        </section>
+        <section id="results-section">
+            <h2>Search results</h2>
+            
+        <!-- Anime cards will be inserted here -->
+
+        </section>
+        <section id="favorites-section">
+            <h2>Favorite Anime</h2>
+            
+        <!-- Favorite anime will appear here -->
+            
+
+        </section>
     </main>
 
     <footer>
-
+       <p>© 2026 Group 12 Anime Search Project</p>
     </footer>
-    <script src="./JS/main.js"></script>
+    
+    <script src="./js/api.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/favorites.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
