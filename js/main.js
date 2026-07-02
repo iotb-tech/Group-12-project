@@ -3,6 +3,12 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const statusSection = document.getElementById("status-section");
 const favoritesSection = document.getElementById("favorites-section");
+const resultsContainer = document.getElementById("results-container");
+const favoritesContainer = document.getElementById("favorites-container")
+
+// Global variables
+let currentAnimeList = [];
+
 
 // Listen for form submission
 searchForm.addEventListener("submit", async function (event) {
@@ -19,6 +25,51 @@ searchForm.addEventListener("submit", async function (event) {
 
     const animeData = await fetchAnime(searchTerm)
 
+    if(!animeData) {
+        statusSection.textContent = "Unable to fetch anime. Please try again.";
+        return;
+    }
+
+    currentAnimeList = animeData.data;
+
     displayAnime(animeData)
     statusSection.textContent = "";
-})
+});
+
+resultsContainer.addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("details-btn")) {
+       
+        const clickedId = Number(event.target.dataset.id);
+                    
+        const selectedAnime = currentAnimeList.find(function(anime) {
+            return anime.mal_id === clickedId;
+
+        });
+    
+    openModal(selectedAnime);
+    
+    }
+
+    if (event.target.classList.contains("favorite-btn")) {
+    
+        const clickedId = Number(event.target.dataset.id);
+
+        const selectedAnime = currentAnimeList.find(function(anime) {
+            return anime.mal_id === clickedId;
+            console.log("Favorite button clicked");
+        });
+        console.log(selectedAnime);
+        addFavorite(selectedAnime)
+    }
+});
+
+
+favoritesContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-btn")) {
+        const clickedId = Number(event.target.dataset.id)
+        removeFavorite(clickedId)
+    }
+});
+
+displayFavorites();
